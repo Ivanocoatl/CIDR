@@ -54,11 +54,6 @@
 
         /* Estilos de resaltado dinámico */
         .dyn-val { transition: all 0.3s; color: #fbbf24; font-weight: bold; background: rgba(251, 191, 36, 0.15); padding: 0 4px; border-radius: 4px; display: inline-block; }
-        
-        /* Scrollbar styling para tabla final */
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen pb-10">
@@ -66,20 +61,13 @@
 <canvas id="explosion-canvas"></canvas>
 
 <div id="start-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 px-4 text-center">
-    <div class="mb-6 relative">
+    <div class="mb-8 relative">
         <div class="absolute inset-0 bg-blue-600 blur-[80px] opacity-30 rounded-full"></div>
         <h1 class="text-3xl sm:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400 pixel-font leading-relaxed relative z-10 drop-shadow-lg">
             SUBNET BOOTCAMP PRO
         </h1>
     </div>
-    <p class="mb-6 text-slate-300 text-sm sm:text-lg max-w-lg border border-slate-800 bg-slate-900/50 p-5 rounded-xl shadow-inner">15 misiones tácticas con <strong>Doble Validación, Calculadora Dinámica y Sistema de Rangos</strong>. ¡Demuestra que dominas la red!</p>
-    
-    <!-- INPUT PARA NOMBRE DEL RECLUTA -->
-    <div class="w-full max-w-sm mb-8 relative z-10">
-        <label for="user-name" class="block text-blue-400 text-sm font-bold mb-2 uppercase tracking-widest text-left">Nombre del Recluta:</label>
-        <input type="text" id="user-name" class="w-full bg-slate-900/80 border-2 border-blue-500/50 text-white p-4 rounded-xl text-center text-lg focus:outline-none focus:border-emerald-400 transition-all font-bold placeholder-slate-600" placeholder="Ej. Alex Hacker" autocomplete="off" maxlength="20">
-    </div>
-
+    <p class="mb-8 text-slate-300 text-sm sm:text-lg max-w-lg border border-slate-800 bg-slate-900/50 p-5 rounded-xl shadow-inner">15 misiones tácticas con <strong>Doble Validación, Calculadora Dinámica y Sistema de Rangos</strong>. ¡Demuestra que dominas la red!</p>
     <button id="btn-start" class="pixel-font bg-blue-600 hover:bg-blue-500 text-white py-4 px-8 rounded-xl text-base sm:text-lg shadow-[0_0_30px_rgba(59,130,246,0.6)] hover:shadow-[0_0_50px_rgba(59,130,246,0.8)] active:scale-95 transition-all border-b-4 border-blue-800 w-full max-w-sm">
         INICIAR SISTEMA
     </button>
@@ -118,13 +106,7 @@
         </div>
 
         <div id="mission-workspace" class="bg-slate-950/60 p-4 rounded-xl border border-slate-800 mb-4 space-y-4 shadow-inner text-sm sm:text-base"></div>
-        <div id="reason-workspace" class="bg-indigo-950/40 p-4 rounded-xl border border-indigo-900/40 mb-3 shadow-inner text-sm sm:text-base"></div>
-
-        <!-- BOTÓN Y ÁREA DE SOLUCIÓN PASO A PASO -->
-        <button id="btn-solution" class="w-full font-bold bg-slate-800 hover:bg-slate-700 text-amber-400 py-3 rounded-xl border border-amber-600/30 text-sm tracking-wide mb-4 transition-all flex items-center justify-center gap-2">
-            💡 Ver solución paso a paso (Anula puntos)
-        </button>
-        <div id="solution-area" class="hidden p-4 rounded-xl mb-4 text-sm sm:text-base border shadow-inner leading-relaxed transition-all duration-300"></div>
+        <div id="reason-workspace" class="bg-indigo-950/40 p-4 rounded-xl border border-indigo-900/40 mb-4 shadow-inner text-sm sm:text-base"></div>
 
         <div id="feedback-area" class="hidden p-4 rounded-xl mb-4 text-sm sm:text-base font-bold border leading-relaxed shadow-lg transition-all"></div>
 
@@ -197,6 +179,7 @@
 <!-- MANUAL MODAL DINÁMICO -->
 <div id="manual-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 p-4 hidden backdrop-blur-lg">
     <div class="glass-card p-4 sm:p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto border-2 border-indigo-500/50 shadow-[0_0_50px_rgba(79,70,229,0.2)] relative">
+        
         <div class="flex justify-between items-center mb-6 border-b border-slate-700 pb-3 sticky top-0 bg-slate-900/90 p-3 rounded-xl z-10 backdrop-blur-md shadow-md">
             <h3 class="text-base sm:text-lg font-bold text-yellow-400 flex items-center gap-2">
                 📖 Manual Adaptativo
@@ -205,6 +188,7 @@
                 ❌ Cerrar
             </button>
         </div>
+
         <div class="space-y-6 text-sm sm:text-base text-slate-200 leading-relaxed">
             
             <div class="bg-slate-950 p-5 rounded-xl border-l-4 border-purple-500 shadow-inner">
@@ -254,6 +238,7 @@
                     <span class="font-mono text-xl text-blue-400 font-bold bg-slate-900 px-4 py-2 rounded-lg shadow-inner inline-block">2<sup id="dyn-s-n2">4</sup> = <span id="dyn-s-tot">16</span> Subredes</span>
                 </div>
             </div>
+
         </div>
 
         <div class="mt-8 pt-4 flex justify-center relative z-10 sticky bottom-0 bg-slate-950/90 py-3 backdrop-blur-md rounded-t-xl border-t border-slate-800">
@@ -261,64 +246,44 @@
                 Regresar
             </button>
         </div>
+
     </div>
 </div>
 
-<div id="final-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 px-4 text-center hidden custom-scroll overflow-y-auto pb-10">
+<div id="final-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 px-4 text-center hidden">
+    <!-- El final screen sigue igual -->
     <div class="absolute inset-0 bg-yellow-600 blur-[120px] opacity-20 rounded-full"></div>
-    <h1 class="text-3xl sm:text-5xl text-yellow-400 pixel-font leading-relaxed relative z-10 mt-10 mb-2 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]">
+    <h1 class="text-3xl sm:text-5xl text-yellow-400 pixel-font leading-relaxed relative z-10 mb-2 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)]">
         REPORTE TÁCTICO
     </h1>
+    <div class="text-[120px] leading-none font-bold text-white mb-2 drop-shadow-2xl" id="final-grade-letter">A</div>
+    <p class="text-slate-300 mb-8 text-xl">Rango: <span id="final-rank-text" class="text-emerald-400 font-bold pixel-font text-sm ml-2">LEYENDA</span></p>
     
-    <!-- Nombre del jugador integrado -->
-    <h2 id="final-name" class="text-2xl text-blue-300 font-bold mb-4 uppercase tracking-widest relative z-10 drop-shadow-md">RECLUTA ANÓNIMO</h2>
-
-    <div class="text-[100px] sm:text-[120px] leading-none font-bold text-white mb-2 drop-shadow-2xl relative z-10" id="final-grade-letter">A</div>
-    <p class="text-slate-300 mb-4 text-xl relative z-10">Rango final: <span id="final-rank-text" class="text-emerald-400 font-bold pixel-font text-sm ml-2">LEYENDA</span></p>
-    
-    <!-- Consejo Retroactivo -->
-    <div id="final-advice" class="text-slate-200 bg-slate-900/60 border border-slate-700/50 p-4 rounded-xl italic mb-6 max-w-lg mx-auto relative z-10 shadow-inner text-sm sm:text-base leading-relaxed"></div>
-    
-    <div class="bg-slate-900/90 p-5 sm:p-7 rounded-2xl border border-slate-700 w-full max-w-lg space-y-4 mb-8 shadow-[0_0_40px_rgba(0,0,0,0.8)] relative z-10 text-left">
-        
-        <!-- Resumen General -->
-        <div class="grid grid-cols-2 gap-4 border-b border-slate-800 pb-4 mb-2">
-            <div class="text-center">
-                <span class="block text-slate-400 font-mono text-xs uppercase mb-1">Rendimiento</span> 
-                <span class="text-white font-bold text-xl sm:text-2xl" id="final-grade-num">100%</span>
-            </div>
-            <div class="text-center border-l border-slate-800">
-                <span class="block text-slate-400 font-mono text-xs uppercase mb-1">Puntos Exp</span> 
-                <span class="text-yellow-400 font-bold text-xl sm:text-2xl" id="final-pts">1500</span>
-            </div>
-            <div class="text-center pt-2">
-                <span class="block text-slate-400 font-mono text-xs uppercase mb-1">Misiones</span> 
-                <span class="text-blue-400 font-bold text-xl sm:text-2xl">15/15</span>
-            </div>
-            <div class="text-center border-l border-slate-800 pt-2">
-                <span class="block text-slate-400 font-mono text-xs uppercase mb-1">Fallos</span> 
-                <span class="text-red-400 font-bold text-xl sm:text-2xl" id="final-errs">0</span>
-            </div>
+    <div class="bg-slate-900/90 p-6 sm:p-8 rounded-2xl border border-slate-700 w-full max-w-sm space-y-5 mb-8 shadow-[0_0_40px_rgba(0,0,0,0.8)] relative z-10 text-left">
+        <div class="flex justify-between border-b border-slate-800 pb-3 items-center">
+            <span class="text-slate-400 font-mono text-sm uppercase">Rendimiento:</span> 
+            <span class="text-white font-bold text-2xl" id="final-grade-num">100%</span>
         </div>
-
-        <!-- Tabla detallada de misiones -->
-        <h3 class="text-blue-400 font-bold text-sm tracking-widest uppercase text-center mt-2 mb-3">Estadísticas por Misión</h3>
-        <div id="final-stats-list" class="max-h-48 overflow-y-auto custom-scroll pr-2 space-y-2 text-sm bg-slate-950/50 p-3 rounded-lg border border-slate-800">
-            <!-- JS Inyectará la tabla -->
+        <div class="flex justify-between border-b border-slate-800 pb-3 items-center">
+            <span class="text-slate-400 font-mono text-sm uppercase">Puntos Exp:</span> 
+            <span class="text-yellow-400 font-bold text-2xl" id="final-pts">1500</span>
         </div>
-
+        <div class="flex justify-between border-b border-slate-800 pb-3 items-center">
+            <span class="text-slate-400 font-mono text-sm uppercase">Misiones:</span> 
+            <span class="text-blue-400 font-bold text-2xl">15/15</span>
+        </div>
+        <div class="flex justify-between items-center">
+            <span class="text-slate-400 font-mono text-sm uppercase">Fallos:</span> 
+            <span class="text-red-400 font-bold text-2xl" id="final-errs">0</span>
+        </div>
     </div>
 
-    <button onclick="location.reload()" class="pixel-font bg-slate-800 hover:bg-slate-700 text-white py-5 px-8 rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95 transition-all border border-slate-600 relative z-10 text-sm sm:text-base w-full max-w-sm mb-10">
-        NUEVO ENTRENAMIENTO
+    <button onclick="location.reload()" class="pixel-font bg-slate-800 hover:bg-slate-700 text-white py-5 px-8 rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95 transition-all border border-slate-600 relative z-10 text-sm sm:text-base w-full max-w-sm">
+        REINICIAR ENTRENAMIENTO
     </button>
 </div>
 
 <script>
-    // --- 0. GESTIÓN DE USUARIO Y SEGUIMIENTO ---
-    let userName = "";
-    let levelStats = []; // Array para trackear intentos y uso de solución por misión
-
     // --- 1. AUDIO SYSTEM (Tone.js) ---
     let tickSynth, successSynth, errorSynth, natSynth, victorySynth, explosionNoise, explosionMembrane;
     let audioReady = false;
@@ -379,32 +344,64 @@
     
     calcBits.addEventListener('input', (e) => {
         let n = parseInt(e.target.value); if(isNaN(n) || n < 0) n = 0; if(n > 32) n = 32;
+        
+        // UI Calculadora
         document.getElementById('c-lbl-n').innerText = n;
         let tot = Math.pow(2, n);
         document.getElementById('c-res-tot').innerText = tot.toLocaleString();
         document.getElementById('c-res-use').innerText = (n === 32) ? 0 : (n === 31 ? 2 : Math.max(0, tot - 2).toLocaleString());
         
-        document.getElementById('dyn-h-n1').innerText = n; document.getElementById('dyn-h-n2').innerText = n; document.getElementById('dyn-h-tot').innerText = tot.toLocaleString();
-        document.getElementById('dyn-s-n1').innerText = n; document.getElementById('dyn-s-n2').innerText = n; document.getElementById('dyn-s-tot').innerText = tot.toLocaleString();
+        // Inyección dinámica en el Manual (Hosts y Subredes)
+        document.getElementById('dyn-h-n1').innerText = n;
+        document.getElementById('dyn-h-n2').innerText = n;
+        document.getElementById('dyn-h-tot').innerText = tot.toLocaleString();
+        
+        document.getElementById('dyn-s-n1').innerText = n;
+        document.getElementById('dyn-s-n2').innerText = n;
+        document.getElementById('dyn-s-tot').innerText = tot.toLocaleString();
+        
         playTick();
     });
 
     calcMask.addEventListener('input', (e) => {
         let m = parseInt(e.target.value); if(isNaN(m) || m < 0) m = 0; if(m > 255) m = 255;
+        
+        // UI Calculadora
         document.getElementById('c-lbl-m').innerText = m;
         let jmp = 256 - m;
-        document.getElementById('c-res-jmp').innerText = jmp; document.getElementById('c-res-jmp2').innerText = jmp;
+        document.getElementById('c-res-jmp').innerText = jmp;
+        document.getElementById('c-res-jmp2').innerText = jmp;
         
-        let binStr = ""; let sumArr = []; let onesCount = 0; let bitVals = [128, 64, 32, 16, 8, 4, 2, 1];
+        // Calcular cadena binaria y sumatorias para el Manual
+        let binStr = "";
+        let sumArr = [];
+        let onesCount = 0;
+        let bitVals = [128, 64, 32, 16, 8, 4, 2, 1];
+        
         for(let bit of bitVals) {
-            if((m & bit) === bit) { binStr += "1"; sumArr.push(bit); onesCount++; } else { binStr += "0"; }
+            if((m & bit) === bit) {
+                binStr += "1";
+                sumArr.push(bit);
+                onesCount++;
+            } else {
+                binStr += "0";
+            }
         }
+        
         let sumStr = sumArr.length > 0 ? sumArr.join(" + ") : "0";
         
-        document.getElementById('dyn-m-val-title').innerText = m; document.getElementById('dyn-m-val-txt').innerText = m; document.getElementById('dyn-m-ones').innerText = onesCount;
-        document.getElementById('dyn-m-bin').innerText = binStr; document.getElementById('dyn-m-sum').innerText = sumStr; document.getElementById('dyn-m-val-eq').innerText = m;
-        document.getElementById('dyn-m-val-sub').innerText = m; document.getElementById('dyn-m-jmp-sub').innerText = jmp; document.getElementById('dyn-m-val-text2').innerText = m;
+        // Inyección dinámica en el Manual (Máscara y Salto)
+        document.getElementById('dyn-m-val-title').innerText = m;
+        document.getElementById('dyn-m-val-txt').innerText = m;
+        document.getElementById('dyn-m-ones').innerText = onesCount;
+        document.getElementById('dyn-m-bin').innerText = binStr;
+        document.getElementById('dyn-m-sum').innerText = sumStr;
+        document.getElementById('dyn-m-val-eq').innerText = m;
+        document.getElementById('dyn-m-val-sub').innerText = m;
+        document.getElementById('dyn-m-jmp-sub').innerText = jmp;
+        document.getElementById('dyn-m-val-text2').innerText = m;
         document.getElementById('dyn-m-jmp-txt').innerText = jmp;
+        
         playTick();
     });
 
@@ -450,13 +447,13 @@
         return { title: "Leyenda Digital 👑", color: "text-emerald-400" };
     };
 
-    // --- 7. LEVELS DEFINITION WITH SOLUTIONS ---
+    // --- 7. LEVELS DEFINITION ---
+    // (Mismas misiones intactas)
     const levels = [
         {
             title: "Misión 1: Los Cimientos (Clases IP)", desc: "Identifica la estructura de una red LAN estándar que encuentras en casas o pymes.",
             ui: () => `<p class="text-base text-blue-300 mb-3 font-bold">¿Qué máscara por defecto corresponde a una IP Clase C (Ej: 192.168.1.1)?</p>` + buildRadios('ans', [ {val: 'A', text: '/8 (255.0.0.0)'}, {val: 'B', text: '/16 (255.255.0.0)'}, {val: 'C', text: '/24 (255.255.255.0)'} ]),
             reason: () => buildRadios('rsn', [ {val: 'W', text: 'Porque el primer octeto bloquea toda la red.'}, {val: 'C', text: 'Porque la Clase C reserva los 3 primeros octetos para Red y deja 1 octeto para Hosts.'}, {val: 'W2', text: 'Porque permite crear millones de redes.'} ]),
-            solution: () => "Un prefijo <strong>/24</strong> significa que los primeros 24 bits (3 octetos completos: 8+8+8) están encendidos en la máscara (255.255.255) y están dedicados estrictamente a la RED. Solo el último octeto (.0) queda libre para asignar dispositivos (Hosts).",
             verify: () => {
                 const ans = document.querySelector('input[name="ans"]:checked')?.value; const rsn = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!ans || !rsn) return {ok:false, msg:"¡Recluta, selecciona ambas opciones antes de validar! ⚠️"};
@@ -469,7 +466,6 @@
             title: "Misión 2: Operación AND (El Cerebro)", desc: "Antes de enviar un dato, tu PC usa la operación binaria AND. ¿Para qué hace esto exactamente?",
             ui: () => buildRadios('ans', [ {val: 'W', text: 'Para traducir la IP en una dirección MAC.'}, {val: 'C', text: 'Para calcular el ID de Red del Destino usando SU propia máscara origen.'}, {val: 'W2', text: 'Para saber a qué velocidad transmitir los datos.'} ]),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'Si el resultado coincide con su red, asume que es LAN. Si no, lo manda al Router (WAN).'}, {val: 'W', text: 'Para que el switch asigne un puerto automáticamente.'} ]),
-            solution: () => "El operador matemático <strong>Bitwise AND</strong> es la 'brújula' de la PC. La computadora compara la IP destino contra su propia máscara de subred para calcular el 'ID de Red' del destino. Si es idéntico a su propio ID, significa que están conectados en el mismo Switch (LAN). Si difieren, sabe que debe enviarlo a la pasarela (Router).",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"Faltan coordenadas tácticas. Completa todo. 📡"};
@@ -481,7 +477,6 @@
             title: "Misión 3: El Guardián LAN vs WAN", desc: "Tu IP es 192.168.1.25 /24. Intentas hacer ping a 192.168.2.50. ¿A dónde enviará la PC este paquete?",
             ui: () => buildRadios('ans', [ {val: 'L', text: 'Directo al destino (LAN)'}, {val: 'W', text: 'Al Router (WAN)'} ], 2),
             reason: () => buildRadios('rsn', [ {val: 'W1', text: 'Porque ambas IPs empiezan con 192.168.'}, {val: 'C', text: 'Porque el /24 exige que los primeros 3 octetos coincidan, y 1.25 ≠ 2.50.'}, {val: 'W2', text: 'Porque el destino es un número par.'} ]),
-            solution: () => "Como tu máscara es <strong>/24 (255.255.255.0)</strong>, los primeros 3 octetos establecen tu frontera. Tu red es <strong>192.168.1</strong>.X. Como la IP destino pertenece a <strong>192.168.2</strong>.X, hay una discrepancia en el tercer octeto. Al no coincidir, la PC descarta usar la LAN y envía la trama al Router.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"No podemos proceder a ciegas, marca tus respuestas. 🕶️"};
@@ -494,7 +489,6 @@
             title: "Misión 4: El Truco del /23", desc: "Ahora tu IP es 192.168.2.10 y te cambiaron la máscara a /23. Intentas hacer ping a 192.168.3.50. ¿Qué pasa ahora?",
             ui: () => buildRadios('ans', [ {val: 'L', text: 'Directo al destino (LAN)'}, {val: 'W', text: 'Al Router (WAN)'} ], 2),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'Porque un /23 hace un salto de 2, agrupando la subred 2.X y 3.X en el mismo bloque local.'}, {val: 'W1', text: 'Porque /23 bloquea los 4 octetos.'}, {val: 'W2', text: 'Porque la IP destino termina en .50.'} ]),
-            solution: () => "Un prefijo <strong>/23</strong> roba un bit al tercer octeto. Matemáticamente, el Número Mágico dicta un salto de <strong>2</strong> en 2 en el tercer octeto (.0, .2, .4...). Así, la red que inicia en 192.168.2.0 abarca también todo 192.168.3.255 en un solo bloque unificado. ¡Por lo tanto, 2.10 y 3.50 son ahora vecinos en la LAN!",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"Selecciona tu maniobra. 🕹️"};
@@ -507,7 +501,6 @@
             title: "Misión 5: Infiltración LAN (Escribe la IP)", desc: "Tu IP es 10.0.5.20 /24. Para escanear un equipo, necesitas asignarle una IP en tu MISMA LAN. Escribe una IP válida.",
             ui: () => buildIpInput('inp5'),
             reason: () => buildRadios('rsn', [ {val: 'W1', text: 'Cambié el 2do octeto porque la Clase A lo permite.'}, {val: 'C', text: 'Mantuve los primeros 3 octetos idénticos (por el /24) y usé un host válido en el 4to.'} ]),
-            solution: () => "El prefijo <strong>/24</strong> rige con puño de hierro: los 3 primeros octetos deben ser inamovibles (<strong>10.0.5</strong>). Solo te queda maniobrar con el cuarto octeto. Podes asignar cualquier número del 1 al 254 (evitando el .0 de Red, el .255 de Broadcast y el .20 que ya estás usando). Ej: 10.0.5.99.",
             verify: () => {
                 const ip = readIp('inp5'); const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(ip.includes(NaN) || !r) return {ok:false, msg:"Digita la IP completa y la justificación. ⌨️"};
@@ -523,7 +516,6 @@
             title: "Misión 6: El Escape de NAT", desc: "Tu IP privada es 172.16.1.5 y pides un video a YouTube. ¿Qué le hace EXACTAMENTE el Router al paquete para que el video pueda regresar a ti?",
             ui: () => buildRadios('ans', [ {val: 'W', text: 'Deja la IP intacta, solo aumenta la velocidad de transmisión.'}, {val: 'C', text: 'Sustituye tu IP Origen Privada por su IP Pública.'} ]),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'Las IPs privadas no existen en Internet. El servidor le responde al Router, y él recuerda enviártelo a ti.'}, {val: 'W', text: 'Porque el destino bloquea las conexiones que no sean Clase C.'} ]),
-            solution: () => "Los servidores en internet (WAN) no tienen idea de qué es una IP privada (como 172.16.X.X). El proceso <strong>NAT (Network Address Translation)</strong> en el Router intercepta tu paquete saliente y borra tu IP privada de origen, escribiendo en su lugar su propia IP Pública. Así, cuando el video regresa de YouTube, llega al Router, quien mágicamente recuerda qué PC local lo pidió y te lo reenvía.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"¡Datos incompletos! 🚨"};
@@ -535,7 +527,6 @@
             title: "Misión 7: Arquitectura de Dispositivos", desc: "Te asignan un bloque con máscara /28 para instalar cámaras IP. Usa la calculadora táctica si lo necesitas.",
             ui: () => `<p class="text-base font-bold text-emerald-400 mb-3">¿Cuántas IPs ÚTILES por subred te da el /28?</p> ` + buildRadios('ans', [{val:'16', text:'16'}, {val:'14', text:'14'}, {val:'32', text:'32'}], 3),
             reason: () => buildRadios('rsn', [ {val: 'W', text: '2 elevado a la 4 = 16. Fin.'}, {val: 'C', text: 'Quedan 4 bits de host (32 - 28). 2⁴ = 16. Restamos 2 (Red y Bcast) = 14 IPs.'} ]),
-            solution: () => "Los bits totales de IPv4 son 32. Si usas un prefijo /28, te sobran matemáticamente 4 bits para hosts (ceros). La fórmula es <strong>2^4 = 16 IPs totales</strong>. Por regla inquebrantable, SIEMPRE debes restar 2 IPs (la primera para ID de Red y la última para Broadcast). Resultado: <strong>14 IPs asignables a las cámaras</strong>.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"No dispares sin apuntar, selecciona tus respuestas. 🎯"};
@@ -546,9 +537,8 @@
         },
         {
             title: "Misión 8: Arquitectura de Subredes Máximas", desc: "Tienes una red principal Clase C (192.168.1.0/24) y decides usar /27. Calcula la división.",
-            ui: () => `<p class="text-base font-bold text-blue-400 mb-3">¿Cuántas subredes nuevas creaste?</p>` + buildRadios('ans', [{val:'8', text:'8'}, {val:'32', text:'6', text:'6'}], 3),
+            ui: () => `<p class="text-base font-bold text-blue-400 mb-3">¿Cuántas subredes nuevas creaste?</p>` + buildRadios('ans', [{val:'8', text:'8'}, {val:'32', text:'32'}, {val:'6', text:'6'}], 3),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'De /24 a /27 robaste 3 bits de red. 2 elevado a la 3 = 8 subredes.'}, {val: 'W', text: 'Robé 5 bits de host. 2⁵ = 32.'} ]),
-            solution: () => "El cálculo de subredes responde a los BITS ROBADOS, no a los bits que sobran. Tu frontera original estaba en el bit 24. Si mueves la frontera al bit 27, estás robando <strong>3 bits</strong> (convirtiendo ceros de host a unos de red). Aplicamos la fórmula: <strong>2^3 = 8</strong> subredes independientes, cada una más pequeña.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"Falta información táctica. 📡"};
@@ -560,7 +550,6 @@
             title: "Misión 9: La Conexión /30 (Punto a Punto)", desc: "Estás conectando dos Routers con un cable directo. El estándar manda usar máscara /30. ¿Por qué?",
             ui: () => buildRadios('ans', [ {val: 'W', text: 'Porque es la más rápida para enrutamiento.'}, {val: 'C', text: 'Porque provee exactamente 2 IPs útiles sin desperdicio.'} ]),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'Sobran 2 bits de host (2² = 4 totales). Restas 2 = 2 IPs útiles. Justo 1 para cada Router.'}, {val: 'W', text: 'Porque bloquea todos los ataques externos.'} ]),
-            solution: () => "Un prefijo <strong>/30</strong> deja únicamente 2 bits libres para hosts (32-30=2). La fórmula 2^2 arroja 4 IPs en total. Restamos el ID de Red y el Broadcast, y nos quedan exactamente <strong>2 IPs útiles</strong>. Esto es el estándar en telecomunicaciones para interconectar dos routers, ya que no se desperdicia ni una sola IP valiosa.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"¿Por qué dudamos? Marca la respuesta. ⌛"};
@@ -572,7 +561,6 @@
             title: "Misión 10: Tráfico Fantasma (Clase D)", desc: "En Wireshark ves un flujo masivo hacia la IP 224.0.0.10. Haces ping pero nadie responde.",
             ui: () => buildRadios('ans', [ {val: 'W', text: 'Es un servidor Clase A mal configurado.'}, {val: 'C', text: 'Es una dirección Multicast.'} ]),
             reason: () => buildRadios('rsn', [ {val: 'W', text: 'Se usa para asignar IPs dinámicas (DHCP).'}, {val: 'C', text: 'Las IPs 224-239 no se asignan a PCs. Las usan protocolos (como OSPF) para hablar en grupo cerrado.'} ]),
-            solution: () => "Dentro de las reglas universales de redes IP, cualquier dirección que comience entre el 224 y el 239 pertenece a la <strong>Clase D (Multicast)</strong>. No representan a un equipo físico individual; son como un canal de radio privado al que los routers o servicios se 'sintonizan' para enviar y recibir actualizaciones sin generar ruido en toda la red.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"No adivines, selecciona. 🧐"};
@@ -587,7 +575,6 @@
                     <span class="text-slate-400 font-mono text-lg">192.168.10.</span><input type="number" id="inp11" class="ip-input text-red-400 border-red-500 w-20 text-lg" placeholder="X">
                 </div>`,
             reason: () => buildRadios('rsn', [ {val: 'W', text: 'Porque todos los broadcast siempre terminan en 255 sin excepción.'}, {val: 'C', text: 'El salto es 64. La red actual empieza en 64 y la siguiente en 128. Una IP antes de 128 es el Broadcast.'} ]),
-            solution: () => "Analizamos la máscara: un /26 equivale a 255.255.255.192. Aplicamos la regla del Número Mágico (256 - 192 = <strong>64</strong>). Las subredes avanzan de 64 en 64: .0, .64, .128. Si tú estás en la .64, la siguiente pared (la subred contigua) empieza en .128. La IP inmediatamente anterior a .128 es matemáticamente <strong>.127</strong>, siendo este tu Broadcast exacto (derribando el mito del .255 perpetuo).",
             verify: () => {
                 const ip = parseInt(document.getElementById('inp11').value); const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(isNaN(ip) || !r) return {ok:false, msg:"Ingresa el número y tu justificación. ✍️"};
@@ -603,7 +590,6 @@
                     <span class="text-slate-400 font-mono text-lg">10.1.1.</span><input type="number" id="inp12" class="ip-input text-orange-400 border-orange-500 w-20 text-lg" placeholder="X">
                 </div>`,
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'Un /26 abarca bloques de 64. Mi LAN va del 0 al 63. Cualquier número de 64 para arriba cae en OTRA subred.'}, {val: 'W', text: 'Un /26 significa que tengo que usar números impares para salir al exterior.'} ]),
-            solution: () => "Tu red actual con /26 (salto de 64) empieza en el ID .0 y termina en el Broadcast .63. Esto define tu 'habitación'. Si escribes cualquier número de <strong>64 para arriba</strong> (hasta 255), estás apuntando a una subred distinta. La PC hará el Bitwise AND, notará la diferencia y le lanzará el paquete al Router sin dudarlo.",
             verify: () => {
                 const oct4 = parseInt(document.getElementById('inp12').value); const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(isNaN(oct4) || !r) return {ok:false, msg:"Digita el escape y el por qué. 🏃‍♂️"};
@@ -616,7 +602,6 @@
             title: "Misión 13: La Inversa (Supernetting)", desc: "Tienes la red 192.168.1.0/24 y la 192.168.2.0/24. Quieres fusionarlas en un solo gran bloque. ¿Qué máscara debes aplicar?",
             ui: () => buildRadios('ans', [ {val: 'W', text: '/25'}, {val: 'C', text: '/23'} ]),
             reason: () => buildRadios('rsn', [ {val: 'W', text: 'Le sumo un bit a la máscara para duplicar el tamaño de redes.'}, {val: 'C', text: 'Muevo la frontera hacia la izquierda. Devuelvo bits a los hosts para fusionar bloques.'} ]),
-            solution: () => "El <strong>Supernetting</strong> es lo opuesto al Subnetting. Si aumentar el prefijo (+bits) divide la red haciéndola más pequeña, entonces disminuir el prefijo (-bits) fusiona las redes. Pasando de un /24 a un <strong>/23</strong>, le robas 1 bit a la Red y se lo regalas a los Hosts. Al duplicar el espacio, la 1.X y 2.X ahora forman una sola super-ruta en el Router.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"¡Decide tu fusión, arquitecto! 🏗️"};
@@ -628,7 +613,6 @@
             title: "Misión 14: El Salto Gigante (/12)", desc: "Trabajas en el núcleo de un ISP (Proveedor de Internet) con la IP 10.150.0.1 /12. ¿De cuánto es el salto y en qué octeto ocurre?",
             ui: () => buildRadios('ans', [ {val: 'W', text: 'Salto de 16 en el tercer octeto.'}, {val: 'C', text: 'Salto de 16 en el segundo octeto.'} ]),
             reason: () => buildRadios('rsn', [ {val: 'C', text: 'El /12 corta al segundo octeto (8 bits enteros + 4 prestados). Máscara decimal = 255.240.0.0. Magia = 256 - 240 = 16.'}, {val: 'W', text: 'Un /12 es Clase A pura, siempre salta en el primer octeto sin importar nada.'} ]),
-            solution: () => "Analizamos dónde aterriza el /12. Ocho bits llenan el primer octeto, sobran 4 bits que caen en el <strong>Segundo Octeto</strong>. La máscara es 255.240.0.0. Usamos el Número Mágico en el segundo octeto: 256 - 240 = <strong>Salto de 16</strong>. Esta red masiva brinca de la 10.0.X.X a la 10.16.X.X, 10.32.X.X, etc.",
             verify: () => {
                 const a = document.querySelector('input[name="ans"]:checked')?.value; const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(!a || !r) return {ok:false, msg:"El ISP espera tus instrucciones. Selecciona. 🌐"};
@@ -647,7 +631,6 @@
                 </div>
             `,
             reason: () => buildRadios('rsn', [ {val: 'W', text: 'Le sumé 16 al tercer octeto y le puse .254 al final para que fuera válida.'}, {val: 'C', text: 'El salto en el 3er octeto es 16. La red termina justo antes del 80.0. El Broadcast es 79.255. La última útil es restando 1 (79.254).'} ]),
-            solution: () => "Paso 1: ¿Dónde corta el /20? En el <strong>Tercer octeto</strong> (8+8=16, prestamos 4).<br>Paso 2: Valor decimal de 4 bits prestados = 240.<br>Paso 3: Salto = 256 - 240 = <strong>16</strong>.<br>Paso 4: Si inicias en .64.0, el siguiente bloque es .80.0.<br>Paso 5: El broadcast es una unidad antes del 80.0 -> <strong>79.255</strong>.<br>Paso Final: Como el Gateway debe ser IP útil, le restamos 1 al broadcast -> <strong>79.254</strong>.",
             verify: () => {
                 const o2 = parseInt(document.getElementById('inp15-2').value); const o3 = parseInt(document.getElementById('inp15-3').value); const r = document.querySelector('input[name="rsn"]:checked')?.value;
                 if(isNaN(o2) || isNaN(o3) || !r) return {ok:false, msg:"No me falles en la final. Llena la IP y la razón. 🏁"};
@@ -670,23 +653,13 @@
 
     const loadLevel = (idx) => {
         currentLevel = idx; currentLevelAttempts = 0; const lvl = levels[idx];
-        
-        // Inicializar stats
-        if(!levelStats[idx]) {
-            levelStats[idx] = { attempts: 0, usedSolution: false, hits: 0 };
-        }
-
         document.getElementById('lbl-level').innerText = idx + 1;
         document.getElementById('mission-title').innerText = lvl.title;
         document.getElementById('mission-desc').innerHTML = lvl.desc;
         document.getElementById('mission-workspace').innerHTML = lvl.ui();
         document.getElementById('reason-workspace').innerHTML = `<p class="text-xs sm:text-sm text-indigo-300 uppercase tracking-widest font-bold mb-4 flex items-center gap-2"><span>🛡️</span> Doble Check: ¿Por qué?</p>${lvl.reason()}`;
         
-        // Resetear UI de Validación y Solución
         const fb = document.getElementById('feedback-area'); fb.classList.add('hidden'); fb.style.opacity = 0;
-        const solArea = document.getElementById('solution-area'); solArea.classList.add('hidden');
-        const btnSol = document.getElementById('btn-solution'); btnSol.classList.remove('hidden', 'opacity-50', 'cursor-not-allowed'); btnSol.disabled = false;
-        
         document.getElementById('btn-verify').classList.remove('hidden'); document.getElementById('btn-next').classList.add('hidden');
         document.getElementById('status-led').className = 'led-indicator';
         updateScoreUI();
@@ -702,8 +675,6 @@
         const maxScore = levels.length * 100; const percentage = Math.round((globalScore / maxScore) * 100);
         let gradeLetter = 'F'; if (percentage >= 90) gradeLetter = 'S'; else if (percentage >= 80) gradeLetter = 'A'; else if (percentage >= 70) gradeLetter = 'B'; else if (percentage >= 60) gradeLetter = 'C';
         
-        // Datos generales
-        document.getElementById('final-name').innerText = userName;
         document.getElementById('final-grade-letter').innerText = gradeLetter;
         document.getElementById('final-grade-num').innerText = `${percentage}%`;
         document.getElementById('final-pts').innerText = `${globalScore} / ${maxScore}`;
@@ -713,45 +684,13 @@
         document.getElementById('final-rank-text').innerText = rankInfo.title;
         document.getElementById('final-rank-text').className = `font-bold pixel-font text-sm sm:text-base ml-2 ${rankInfo.color}`;
         
-        if(gradeLetter === 'F' || gradeLetter === 'C') { document.getElementById('final-grade-letter').className = "text-[100px] sm:text-[120px] leading-none font-bold text-red-500 mb-2 drop-shadow-[0_0_20px_rgba(239,68,68,0.8)] relative z-10"; } 
-        else if(gradeLetter === 'S' || gradeLetter === 'A') { document.getElementById('final-grade-letter').className = "text-[100px] sm:text-[120px] leading-none font-bold text-emerald-400 mb-2 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)] relative z-10"; }
-        
-        // Consejo Retroactivo
-        let advice = "";
-        if (gradeLetter === 'S') advice = "¡Increíble, " + userName + "! Eres un maestro del Subnetting y el enrutamiento. Tienes un nivel digno de un Arquitecto de Redes. Los octetos y las máscaras te obedecen ciegamente.";
-        else if (gradeLetter === 'A') advice = "¡Excelente trabajo, " + userName + "! Tienes bases muy sólidas y la lógica de ruteo bien fundamentada. Un repaso mínimo a los cálculos mentales y serás imparable.";
-        else if (gradeLetter === 'B') advice = "Buen esfuerzo. Entiendes los conceptos, pero necesitas practicar la agilidad con la calculadora táctica y la definición de saltos. ¡Sigue practicando!";
-        else if (gradeLetter === 'C') advice = "Lograste sobrevivir a la misión, pero el Subnetting aún te causa bastantes problemas. Te recomiendo repasar a fondo las potencias, bits libres y la regla del Número Mágico.";
-        else advice = "El entrenamiento fue demasiado duro esta vez. Tu red colapsó. Revisa exhaustivamente el Manual Adaptativo en tu próximo intento, ¡no te rindas!";
-        document.getElementById('final-advice').innerText = "💡 " + advice;
-
-        // Generar Tabla Dinámica
-        let statsHTML = ``;
-        levelStats.forEach((stat, idx) => {
-            let statusIcon = stat.hits > 0 ? (stat.usedSolution ? "⚠️" : "✅") : "❌";
-            let color = stat.hits > 0 ? (stat.usedSolution ? "text-amber-400" : "text-emerald-400") : "text-red-400";
-            let bgClass = (idx % 2 === 0) ? "bg-slate-900/60" : "bg-transparent";
-            
-            statsHTML += `
-                <div class="flex justify-between items-center ${bgClass} p-2 rounded">
-                    <span class="text-slate-300 font-mono">Misión ${idx + 1}:</span>
-                    <span class="${color} font-bold text-xs sm:text-sm text-right flex flex-col sm:flex-row sm:gap-2">
-                        <span>${statusIcon} ${stat.attempts} Intentos</span>
-                        ${stat.usedSolution ? '<span class="text-[10px] text-amber-500/80 uppercase">(Ver Solución)</span>' : ''}
-                    </span>
-                </div>`;
-        });
-        document.getElementById('final-stats-list').innerHTML = statsHTML;
-
+        if(gradeLetter === 'F' || gradeLetter === 'C') { document.getElementById('final-grade-letter').className = "text-[120px] leading-none font-bold text-red-500 mb-2 drop-shadow-[0_0_20px_rgba(239,68,68,0.8)]"; } 
+        else if(gradeLetter === 'S' || gradeLetter === 'A') { document.getElementById('final-grade-letter').className = "text-[120px] leading-none font-bold text-emerald-400 mb-2 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)]"; }
         playVictory();
     };
 
     // --- EVENT LISTENERS ---
     document.getElementById('btn-start').addEventListener('click', async () => {
-        // Capturar y validar nombre
-        const nameInput = document.getElementById('user-name').value.trim();
-        userName = nameInput !== "" ? nameInput : "Recluta Anónimo";
-
         await initAudio();
         document.getElementById('start-screen').style.opacity = '0';
         document.getElementById('start-screen').style.transition = 'opacity 0.4s ease';
@@ -769,47 +708,14 @@
     document.getElementById('btn-close-manual').addEventListener('click', () => { playTick(); document.getElementById('manual-modal').classList.add('hidden'); });
     document.getElementById('btn-explode-manual').addEventListener('click', closeAndExplodeManual);
 
-    // Botón de Ver Solución Manualmente
-    document.getElementById('btn-solution').addEventListener('click', () => {
-        levelStats[currentLevel].usedSolution = true;
-        const solArea = document.getElementById('solution-area');
-        solArea.innerHTML = `<strong class="uppercase tracking-widest text-xs mb-1 block">Explicación Paso a Paso:</strong>` + levels[currentLevel].solution();
-        solArea.classList.remove('hidden');
-        
-        // Estilos de penalización (Ámbar)
-        solArea.classList.remove('bg-emerald-900/30', 'text-emerald-200', 'border-emerald-500/50');
-        solArea.classList.add('bg-amber-900/20', 'text-amber-200', 'border-amber-600/40');
-        
-        // Desactivar botón para no pulsarlo múltiples veces
-        document.getElementById('btn-solution').classList.add('opacity-50', 'cursor-not-allowed');
-        document.getElementById('btn-solution').disabled = true;
-    });
-
     document.getElementById('btn-verify').addEventListener('click', () => {
-        const res = levels[currentLevel].verify(); 
-        const fb = document.getElementById('feedback-area'); const led = document.getElementById('status-led'); const ws = document.querySelector('.glass-card');
+        const res = levels[currentLevel].verify(); const fb = document.getElementById('feedback-area'); const led = document.getElementById('status-led'); const ws = document.querySelector('.glass-card');
         fb.classList.remove('hidden', 'bg-emerald-900/40', 'text-emerald-300', 'border-emerald-500/50', 'bg-red-900/40', 'text-red-300', 'border-red-500/50'); fb.style.opacity = 1;
         
-        levelStats[currentLevel].attempts++;
-
         if(res.ok) {
-            levelStats[currentLevel].hits = 1;
             playSuccess(); led.className = 'led-indicator led-green';
             fb.classList.add('bg-emerald-900/40', 'text-emerald-300', 'border-emerald-500/50', 'shadow-[0_0_15px_rgba(16,185,129,0.2)]'); fb.innerHTML = `✅ ${res.msg}`;
-            
-            // Asignar puntos (0 si vio solución, sino 100 bajando 30 pts por error, mínimo 10)
-            let levelPts = levelStats[currentLevel].usedSolution ? 0 : Math.max(10, 100 - ((levelStats[currentLevel].attempts - 1) * 30)); 
-            globalScore += levelPts; updateScoreUI();
-            
-            // Auto-mostrar la explicación positiva si no usó el botón de trampa
-            if(!levelStats[currentLevel].usedSolution) {
-                const solArea = document.getElementById('solution-area');
-                solArea.innerHTML = `<strong class="uppercase tracking-widest text-xs mb-1 block">Análisis Confirmado:</strong>` + levels[currentLevel].solution();
-                solArea.classList.remove('hidden', 'bg-amber-900/20', 'text-amber-200', 'border-amber-600/40');
-                solArea.classList.add('bg-emerald-900/20', 'text-emerald-200', 'border-emerald-500/40');
-                document.getElementById('btn-solution').classList.add('hidden');
-            }
-
+            let levelPts = Math.max(10, 100 - (currentLevelAttempts * 30)); globalScore += levelPts; updateScoreUI();
             document.getElementById('btn-verify').classList.add('hidden'); document.getElementById('btn-next').classList.remove('hidden');
             if(currentLevel === levels.length - 1) {
                 document.getElementById('btn-next').innerText = "VER REPORTE FINAL 🏆";
